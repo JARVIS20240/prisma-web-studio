@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className="w-full bg-black border-t border-white/10 mt-24">
@@ -6,12 +8,12 @@ const Footer = () => {
           Prisma
         </div>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-8 md:mb-0">
-          <a className="font-mono text-xs uppercase tracking-widest text-[#DEDBC8]/60 hover:text-[#DEDBC8] transition-opacity duration-200" href="#">
+          <Link className="font-mono text-xs uppercase tracking-widest text-[#DEDBC8]/60 hover:text-[#DEDBC8] transition-opacity duration-200" to="/privacy-policy">
             Privacy Policy
-          </a>
-          <a className="font-mono text-xs uppercase tracking-widest text-[#DEDBC8]/60 hover:text-[#DEDBC8] transition-opacity duration-200" href="#">
+          </Link>
+          <Link className="font-mono text-xs uppercase tracking-widest text-[#DEDBC8]/60 hover:text-[#DEDBC8] transition-opacity duration-200" to="/terms-of-service">
             Terms of Service
-          </a>
+          </Link>
           <a className="font-mono text-xs uppercase tracking-widest text-[#DEDBC8]/60 hover:text-[#DEDBC8] transition-opacity duration-200" href="https://github.com/JARVIS20240" target="_blank" rel="noopener noreferrer">
             Github
           </a>
