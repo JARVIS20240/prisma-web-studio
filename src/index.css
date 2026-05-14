@@ -668,3 +668,9 @@
     cursor: none !important;
   }
 }
+
+*:focus-visible {
+  outline: 2px solid #A855F7 !important;
+  outline-offset: 4px;
+  cursor: auto !important;
+}

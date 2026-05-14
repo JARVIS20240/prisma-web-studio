@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const countryData = {
   "+91": { name: "IND", mask: "00000 00000", length: 10, instruction: "10_DIGIT_STRICT" },
@@ -15,6 +15,11 @@ const Contact = () => {
   const [country, setCountry] = useState("+91");
   const [phone, setPhone] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(true);
+  
+  // Task 6: Custom Dropdown State
+  const [isScopeOpen, setIsScopeOpen] = useState(false);
+  const [selectedScope, setSelectedScope] = useState('SELECT WEB_SERVICE_TYPE');
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
 
   const formatPhone = (input, mask) => {
     const numbers = input.replace(/\D/g, "");
@@ -35,20 +40,18 @@ const Contact = () => {
   const handlePhoneChange = (e) => {
     const rawValue = e.target.value.replace(/\D/g, "");
     const selectedCountry = countryData[country];
-    
-    // Limit to max length
     const limitedValue = rawValue.slice(0, selectedCountry.length);
     const formatted = formatPhone(limitedValue, selectedCountry.mask);
-    
     setPhone(formatted);
     setIsPhoneValid(limitedValue.length === selectedCountry.length || limitedValue.length === 0);
   };
 
   useEffect(() => {
-    setPhone(""); // Reset phone when country changes
+    setPhone("");
     setIsPhoneValid(true);
   }, [country]);
 
+  // Task 5: UX Refactor - Submission Logic
   const handleSubmit = (e) => {
     e.preventDefault();
     const rawLength = phone.replace(/\D/g, "").length;
@@ -57,10 +60,16 @@ const Contact = () => {
       return;
     }
 
+    // Instantly trigger mailto
+    window.location.href = 'mailto:your.email@example.com?subject=[PRISMA_DIGITAL_HANDSHAKE]';
+    
+    // UI state update
     setStatus('processing');
+    
+    // Reset after delay
     setTimeout(() => {
-      setStatus('complete');
-    }, 1200);
+      setStatus('idle');
+    }, 3000);
   };
 
   return (
@@ -74,7 +83,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
-          {/* Left Pane: System Telemetry & Status */}
+          {/* Left Pane */}
           <div className="space-y-12">
             <header className="space-y-6">
               <h1 className="font-serif text-5xl md:text-7xl italic text-primary leading-tight">
@@ -111,7 +120,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Pane: The Input Matrix */}
+          {/* Right Pane */}
           <div className="relative">
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-2">
@@ -119,6 +128,7 @@ const Contact = () => {
                 <input 
                   type="text" 
                   required
+                  aria-label="Name or Organization"
                   placeholder="IDENTIFY_YOURSELF"
                   className="bg-transparent border border-[#222222] text-primary p-5 w-full outline-none transition-all duration-500 rounded-lg focus:border-secondary focus:shadow-[0_0_20px_rgba(168,85,247,0.15)] placeholder:text-primary/20"
                 />
@@ -129,34 +139,50 @@ const Contact = () => {
                 <input 
                   type="email" 
                   required
+                  aria-label="Secure Email Address"
                   placeholder="SECURE_RETURN_NODE"
                   className="bg-transparent border border-[#222222] text-primary p-5 w-full outline-none transition-all duration-500 rounded-lg focus:border-secondary focus:shadow-[0_0_20px_rgba(168,85,247,0.15)] placeholder:text-primary/20"
                 />
               </div>
 
-              {/* Task 1-5: Smart Phone Input Row */}
               <div className="space-y-3">
                 <div className="flex flex-col sm:flex-row gap-6">
                   <div className="sm:w-1/3 space-y-2">
                     <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ CODE ]</label>
                     <div className="relative">
-                      <select 
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        className="bg-[#080808] border border-[#222222] text-[#DEDBC8] p-5 w-full outline-none transition-all duration-500 rounded-lg focus:border-secondary appearance-none cursor-pointer"
-                        style={{ backgroundColor: '#080808', color: '#DEDBC8' }}
+                      <div 
+                        onClick={() => setIsCountryOpen(!isCountryOpen)}
+                        className="bg-[#080808] border border-[#222222] text-[#DEDBC8] p-5 w-full rounded-lg cursor-pointer flex justify-between items-center focus-within:border-secondary"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && setIsCountryOpen(!isCountryOpen)}
+                        aria-label="Select Country Code"
                       >
-                        {Object.keys(countryData).map(code => (
-                          <option key={code} value={code} className="bg-[#111111]">
-                            {countryData[code].name} ({code})
-                          </option>
-                        ))}
-                      </select>
-                      <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-primary/20">
-                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <span>{countryData[country].name} ({country})</span>
+                        <svg className={`transition-transform duration-300 ${isCountryOpen ? 'rotate-180' : ''}`} width="10" height="6" viewBox="0 0 10 6" fill="none">
                           <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                         </svg>
                       </div>
+                      
+                      <AnimatePresence>
+                        {isCountryOpen && (
+                          <motion.ul 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="absolute z-50 w-full mt-2 bg-[#050505] border border-[#222222] rounded-lg overflow-hidden shadow-2xl"
+                          >
+                            {Object.keys(countryData).map(code => (
+                              <li 
+                                key={code}
+                                onClick={() => { setCountry(code); setIsCountryOpen(false); }}
+                                className="p-4 hover:bg-secondary/10 hover:text-secondary cursor-pointer transition-colors border-b border-white/5 last:border-0 font-mono text-xs"
+                              >
+                                {countryData[code].name} ({code})
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
                   <div className="flex-1 space-y-2">
@@ -165,12 +191,12 @@ const Contact = () => {
                       type="tel" 
                       value={phone}
                       onChange={handlePhoneChange}
+                      aria-label="Phone Number"
                       placeholder="DIAL_PROTOCOL"
                       className={`bg-transparent border ${isPhoneValid ? 'border-[#222222]' : 'border-red-500/50 focus:border-red-500'} text-primary p-5 w-full outline-none transition-all duration-500 rounded-lg focus:border-secondary focus:shadow-[0_0_20px_rgba(168,85,247,0.15)] placeholder:text-primary/20`}
                     />
                   </div>
                 </div>
-                {/* Real-time Feedback & Error Handling */}
                 <div className="flex justify-between items-center px-2">
                   <span className="font-mono text-[10px] text-primary/30 uppercase tracking-widest">
                     FORMAT_REQUIRED: {countryData[country].instruction}
@@ -183,27 +209,53 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* Task 6: Custom Project Scope Dropdown */}
               <div className="space-y-2">
                 <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ PROJECT SCOPE ]</label>
                 <div className="relative">
-                  <select 
-                    required
-                    className="bg-[#080808] border border-[#222222] text-[#DEDBC8] p-5 w-full outline-none transition-all duration-500 rounded-lg focus:border-secondary focus:shadow-[0_0_20px_rgba(168,85,247,0.15)] appearance-none cursor-pointer"
-                    style={{ backgroundColor: '#080808', color: '#DEDBC8' }}
+                  <div 
+                    onClick={() => setIsScopeOpen(!isScopeOpen)}
+                    className="bg-[#080808] border border-[#222222] text-[#DEDBC8] p-5 w-full rounded-lg cursor-pointer flex justify-between items-center focus-within:border-secondary"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && setIsScopeOpen(!isScopeOpen)}
+                    aria-label="Select Project Scope"
                   >
-                    <option value="" disabled selected className="bg-[#111111]">SELECT WEB_SERVICE_TYPE</option>
-                    <option value="b2b-platform" className="bg-[#111111]">B2B Corporate Platform</option>
-                    <option value="full-stack" className="bg-[#111111]">Full-Stack Web Application</option>
-                    <option value="ecommerce" className="bg-[#111111]">E-commerce Ecosystem</option>
-                    <option value="landing-page" className="bg-[#111111]">High-Conversion Landing Page</option>
-                    <option value="custom-ai" className="bg-[#111111]">Custom AI / LLM Integration</option>
-                    <option value="other" className="bg-[#111111]">Other (System Inquiry)</option>
-                  </select>
-                  <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-primary/20">
-                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <span className={selectedScope === 'SELECT WEB_SERVICE_TYPE' ? 'text-primary/20' : 'text-primary'}>
+                      {selectedScope}
+                    </span>
+                    <svg className={`transition-transform duration-300 ${isScopeOpen ? 'rotate-180' : ''}`} width="12" height="8" viewBox="0 0 12 8" fill="none">
                       <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
                   </div>
+                  
+                  <AnimatePresence>
+                    {isScopeOpen && (
+                      <motion.ul 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute z-50 w-full mt-2 bg-[#050505] border border-[#222222] rounded-lg overflow-hidden shadow-2xl"
+                      >
+                        {[
+                          "B2B Corporate Platform",
+                          "Full-Stack Web Application",
+                          "E-commerce Ecosystem",
+                          "High-Conversion Landing Page",
+                          "Custom AI / LLM Integration",
+                          "Other (System Inquiry)"
+                        ].map((option) => (
+                          <li 
+                            key={option}
+                            onClick={() => { setSelectedScope(option); setIsScopeOpen(false); }}
+                            className="p-5 hover:bg-secondary/10 hover:text-secondary cursor-pointer transition-colors border-b border-white/5 last:border-0 text-sm"
+                          >
+                            {option}
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                  <input type="hidden" name="project_scope" value={selectedScope} />
                 </div>
               </div>
 
@@ -212,32 +264,26 @@ const Contact = () => {
                 <textarea 
                   rows="5" 
                   required
+                  aria-label="Project Details"
                   placeholder="TRANSMIT_DATA_PAYLOAD..."
                   className="bg-transparent border border-[#222222] text-primary p-5 w-full outline-none transition-all duration-500 rounded-lg focus:border-secondary focus:shadow-[0_0_20px_rgba(168,85,247,0.15)] placeholder:text-primary/20 resize-none"
                 />
               </div>
 
               <div className="mt-8">
-                {status === 'complete' ? (
-                  <div className="w-full py-6 text-center border border-secondary/40 text-secondary font-mono text-sm tracking-[0.4em] uppercase rounded-lg bg-secondary/5">
-                    // HANDSHAKE_COMPLETE
-                  </div>
-                ) : (
-                  <button 
-                    type="submit"
-                    disabled={status === 'processing' || !isPhoneValid || phone.length === 0}
-                    className={`w-full py-6 border border-[#222222] font-mono text-sm tracking-[0.4em] uppercase transition-all duration-500 rounded-lg active:scale-[0.98] 
-                      ${(status === 'processing' || !isPhoneValid || phone.length === 0) 
-                        ? 'bg-secondary/5 text-primary/20 cursor-not-allowed border-white/5' 
-                        : 'bg-black text-primary hover:bg-primary hover:text-black shadow-[0_0_30px_rgba(168,85,247,0.1)]'}`}
-                  >
-                    {status === 'processing' ? '[ PROTOCOL_INITIATED... ]' : '[ TRANSMIT_PAYLOAD ]'}
-                  </button>
-                )}
+                <button 
+                  type="submit"
+                  disabled={status === 'processing' || !isPhoneValid || phone.length === 0 || selectedScope === 'SELECT WEB_SERVICE_TYPE'}
+                  className={`w-full py-6 border border-[#222222] font-mono text-sm tracking-[0.4em] uppercase transition-all duration-500 rounded-lg active:scale-[0.98] 
+                    ${(status === 'processing' || !isPhoneValid || phone.length === 0 || selectedScope === 'SELECT WEB_SERVICE_TYPE') 
+                      ? 'bg-secondary/5 text-primary/20 cursor-not-allowed border-white/5' 
+                      : 'bg-black text-primary hover:bg-primary hover:text-black shadow-[0_0_30px_rgba(168,85,247,0.1)]'}`}
+                >
+                  {status === 'processing' ? '[ PROTOCOL_INITIATED... ]' : '[ TRANSMIT_PAYLOAD ]'}
+                </button>
               </div>
             </form>
 
-            {/* Background Decorative Element */}
             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-[0.03] pointer-events-none">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="45" fill="none" stroke="white" strokeWidth="0.1" strokeDasharray="1 2" />
