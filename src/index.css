@@ -241,62 +241,161 @@
 }
 
 @keyframes bullet-appear {
-  0% { opacity: 0; transform: translateX(-5px); }
-  10%, 90% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes bar-flicker {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes fractal-pulse {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.02); }
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
 }
 
 @keyframes neural-bloom {
-  0%, 100% { opacity: 0.1; filter: blur(15px) brightness(1); }
-  50% { opacity: 0.4; filter: blur(25px) brightness(1.2); }
+
+  0%,
+  100% {
+    opacity: 0.1;
+    filter: blur(15px) brightness(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    filter: blur(25px) brightness(1.2);
+  }
 }
 
 @keyframes node-shimmer {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; fill: #fbf7e4; }
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+    fill: #fbf7e4;
+  }
 }
 
 @keyframes vault-pulse {
-  0%, 100% { opacity: 0.05; }
-  50% { opacity: 0.2; }
+
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
 }
 
 @keyframes pulse-aura {
-  0%, 100% { opacity: 0.1; transform: scale(1); }
-  50% { opacity: 0.2; transform: scale(1.1); }
+
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: scale(1.1);
+  }
 }
 
 @keyframes data-stream {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes glitch-telemetry {
-  0%, 100% { opacity: 0.2; transform: translate(0); }
-  10% { opacity: 0.8; transform: translate(1px, -1px); }
-  20% { opacity: 0.2; transform: translate(-1px, 1px); }
-  30% { opacity: 1; transform: translate(0); }
-  40% { opacity: 0.2; }
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translate(0);
+  }
+
+  10% {
+    opacity: 0.8;
+    transform: translate(1px, -1px);
+  }
+
+  20% {
+    opacity: 0.2;
+    transform: translate(-1px, 1px);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  40% {
+    opacity: 0.2;
+  }
 }
 
 @keyframes radar-sweep {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes honeycomb-flicker {
-  0%, 100% { opacity: 0.05; fill: transparent; }
-  50% { opacity: 0.3; fill: #A855F7; }
+
+  0%,
+  100% {
+    opacity: 0.05;
+    fill: transparent;
+  }
+
+  50% {
+    opacity: 0.3;
+    fill: #A855F7;
+  }
 }
 
 .animate-scan-vertical {
@@ -403,62 +502,169 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}@keyframes bounding-box-focus {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(2px, 2px); }
 }
+
+@keyframes bounding-box-focus {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(2px, 2px);
+  }
+}
+
 @keyframes bounding-box-tr {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-2px, 2px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-2px, 2px);
+  }
 }
+
 @keyframes bounding-box-bl {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(2px, -2px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(2px, -2px);
+  }
 }
+
 @keyframes bounding-box-br {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-2px, -2px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-2px, -2px);
+  }
 }
+
 @keyframes peak-glow {
-  0%, 40%, 60%, 100% { opacity: 0; }
-  50% { opacity: 0.6; }
+
+  0%,
+  40%,
+  60%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
 }
+
 @keyframes synapse-flicker {
-  0%, 100% { opacity: 0.2; }
-  25% { opacity: 0.8; }
-  50% { opacity: 0.4; }
-  75% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  25% {
+    opacity: 0.8;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  75% {
+    opacity: 0.7;
+  }
 }
+
 @keyframes hardware-wipe {
-  0% { transform: translateX(-100%); }
-  30%, 70% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  30%,
+  70% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
-.animate-bounding-tl { animation: bounding-box-focus 3s ease-in-out infinite; }
-.animate-bounding-tr { animation: bounding-box-tr 3s ease-in-out infinite; }
-.animate-bounding-bl { animation: bounding-box-bl 3s ease-in-out infinite; }
-.animate-bounding-br { animation: bounding-box-br 3s ease-in-out infinite; }
-.animate-peak-glow { animation: peak-glow 3s ease-in-out infinite; }
-.animate-synapse { animation: synapse-flicker 4s ease-in-out infinite; }
-.animate-hardware-wipe { animation: hardware-wipe 4s ease-in-out infinite; }
+
+.animate-bounding-tl {
+  animation: bounding-box-focus 3s ease-in-out infinite;
+}
+
+.animate-bounding-tr {
+  animation: bounding-box-tr 3s ease-in-out infinite;
+}
+
+.animate-bounding-bl {
+  animation: bounding-box-bl 3s ease-in-out infinite;
+}
+
+.animate-bounding-br {
+  animation: bounding-box-br 3s ease-in-out infinite;
+}
+
+.animate-peak-glow {
+  animation: peak-glow 3s ease-in-out infinite;
+}
+
+.animate-synapse {
+  animation: synapse-flicker 4s ease-in-out infinite;
+}
+
+.animate-hardware-wipe {
+  animation: hardware-wipe 4s ease-in-out infinite;
+}
+
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
 .animate-marquee {
   animation: marquee 40s linear infinite;
 }
+
 @keyframes marquee-slow {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
 .animate-marquee-slow {
   animation: marquee-slow 60s linear infinite;
 }
 
 @media (pointer: fine) {
-  body, a, button, input, select, textarea {
+
+  body,
+  a,
+  button,
+  input,
+  select,
+  textarea {
     cursor: none !important;
   }
 }
-
