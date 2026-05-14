@@ -18,6 +18,10 @@
   --spacing-container-max: 1280px;
 }
 
+html {
+  scroll-behavior: auto !important;
+}
+
 @layer base {
   body {
     @apply bg-black text-primary antialiased;

@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Lab from './pages/Lab';
 import Services from './pages/Services';
@@ -33,6 +34,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <CustomCursor />
       <div className="flex flex-col min-h-screen bg-black">
         <Header />
