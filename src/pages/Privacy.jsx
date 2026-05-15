@@ -8,13 +8,13 @@ const Privacy = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-black min-h-screen text-primary"
+      className="bg-black min-h-screen text-primary pt-36 pb-36"
     >
-      <div className="max-w-4xl mx-auto px-6 py-24 md:py-32">
+      <div className="max-w-4xl mx-auto px-6">
         {/* Task 1: Back Navigation */}
         <div className="mb-16">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="font-mono text-xs tracking-[0.3em] text-primary/40 hover:text-secondary transition-colors uppercase"
           >
             [ RETURN_TO_SYSTEM ]
@@ -30,7 +30,7 @@ const Privacy = () => {
 
         {/* Task 3: Content Injection */}
         <div className="space-y-12 font-sans text-lg text-primary/80 leading-relaxed">
-          
+
           <section>
             <h2 className="font-serif text-2xl text-primary mb-6">1. The Information We Collect</h2>
             <p className="mb-6">

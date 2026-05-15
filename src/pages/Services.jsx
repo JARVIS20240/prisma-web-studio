@@ -46,10 +46,10 @@ const Services = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-      className="bg-black min-h-screen pt-32 pb-32"
+      className="bg-black min-h-screen pt-36 pb-36"
     >
       {/* Page Header */}
-      <section className="max-w-7xl mx-auto px-6 md:px-16 py-24">
+      <section className="max-w-7xl mx-auto px-6 md:px-16 pb-24">
         <div className="max-w-3xl">
           <h1 className="font-serif text-5xl md:text-8xl italic text-primary mb-8">Architectural Solutions</h1>
           <p className="font-sans text-xl text-text-subdued max-w-xl">
@@ -85,7 +85,7 @@ const Services = () => {
       </section>
 
       {/* Methodology Statement */}
-      <section className="max-w-7xl mx-auto px-6 md:px-16 py-24 text-center">
+      <section className="max-w-7xl mx-auto px-6 md:px-16 pt-24 pb-0 text-center">
         <p className="font-mono text-[10px] text-primary/60 tracking-[0.2em] uppercase max-w-2xl mx-auto">
           Every architecture is built with React, Vite, and strict performance engineering for sub-second load times.
         </p>

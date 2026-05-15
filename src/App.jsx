@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import ScrollToTop from './components/ScrollToTop';
+import SmoothScroll from './components/SmoothScroll';
 import Home from './pages/Home';
 import Lab from './pages/Lab';
 import Services from './pages/Services';
@@ -16,7 +17,7 @@ import Terms from './pages/Terms';
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/lab" element={<Lab />} />
@@ -34,15 +35,17 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <CustomCursor />
-      <div className="flex flex-col min-h-screen bg-black">
-        <Header />
-        <main className="flex-grow pt-20">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
+      <SmoothScroll>
+        <ScrollToTop />
+        <CustomCursor />
+        <div className="flex flex-col min-h-screen bg-black">
+          <Header />
+          <div className="flex-grow pt-20">
+            <AnimatedRoutes />
+          </div>
+          <Footer />
+        </div>
+      </SmoothScroll>
     </Router>
   );
 }

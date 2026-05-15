@@ -6,7 +6,7 @@ const SystemBoundingBox = () => (
     <span className="material-symbols-outlined text-7xl text-primary/40" style={{ fontVariationSettings: "'FILL' 0", fontWeight: '100' }}>
       account_tree
     </span>
-    
+
     {/* Corner Segments */}
     <div className="absolute inset-0">
       {/* Top Left */}
@@ -29,21 +29,21 @@ const NeuralSynapse = () => (
     <svg viewBox="0 0 100 100" className="w-full h-full">
       {/* Center Node */}
       <circle cx="50" cy="50" r="4" fill="none" stroke="#A855F7" strokeWidth="0.75" />
-      
+
       {/* Synapse Branches */}
       <g stroke="#A855F7" strokeWidth="0.75" fill="none" strokeLinecap="round">
         <path d="M 50,46 L 50,20 M 50,16 L 50,10" className="animate-synapse" style={{ animationDelay: '0s' }} />
         <path d="M 54,50 L 80,50 M 84,50 L 90,50" className="animate-synapse" style={{ animationDelay: '1s' }} />
         <path d="M 50,54 L 50,80 M 50,84 L 50,90" className="animate-synapse" style={{ animationDelay: '2s' }} />
         <path d="M 46,50 L 20,50 M 16,50 L 10,50" className="animate-synapse" style={{ animationDelay: '3s' }} />
-        
+
         {/* Diagonal Branches */}
         <path d="M 53,47 L 70,30" className="animate-synapse" style={{ animationDelay: '0.5s' }} />
         <path d="M 53,53 L 70,70" className="animate-synapse" style={{ animationDelay: '1.5s' }} />
         <path d="M 47,53 L 30,70" className="animate-synapse" style={{ animationDelay: '2.5s' }} />
         <path d="M 47,47 L 30,30" className="animate-synapse" style={{ animationDelay: '3.5s' }} />
       </g>
-      
+
       {/* Outer Glow Nodes */}
       {[20, 80].map(x => [20, 80].map(y => (
         <circle key={`${x}-${y}`} cx={x} cy={y} r="1.5" fill="none" stroke="#A855F7" strokeWidth="0.5" className="animate-pulse" />
@@ -57,8 +57,8 @@ const HardwareHeartbeat = () => (
     {[0, 1, 2].map(i => (
       <div key={i} className="relative w-24 h-6 border-[0.75px] border-primary/20 rounded-sm overflow-hidden bg-black/40">
         {/* The Throughput Wipe Layer */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/40 to-transparent w-full h-full -translate-x-full animate-hardware-wipe" 
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/40 to-transparent w-full h-full -translate-x-full animate-hardware-wipe"
           style={{ animationDelay: `${i * 0.8}s` }}
         />
         {/* Drive Markers */}
@@ -67,7 +67,7 @@ const HardwareHeartbeat = () => (
       </div>
     ))}
     <div className="absolute inset-0 opacity-10 pointer-events-none">
-       <span className="material-symbols-outlined text-[140px] text-primary" style={{ fontVariationSettings: "'FILL' 0", fontWeight: '100' }}>dns</span>
+      <span className="material-symbols-outlined text-[140px] text-primary" style={{ fontVariationSettings: "'FILL' 0", fontWeight: '100' }}>dns</span>
     </div>
   </div>
 );
@@ -101,7 +101,7 @@ const Infrastructure = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-      className="flex-grow max-w-7xl mx-auto w-full px-6 md:px-16 py-32"
+      className="flex-grow max-w-7xl mx-auto w-full px-6 lg:px-16 pt-36 pb-36"
     >
       {/* Page Header */}
       <header className="mb-24">
@@ -114,7 +114,7 @@ const Infrastructure = () => {
       {/* Console Panels */}
       <div className="flex flex-col gap-8">
         {sections.map((section, i) => (
-          <article 
+          <article
             key={i}
             className="bg-[#0A0A0A] border border-[#222222] p-8 md:p-12 relative overflow-hidden group transition-all duration-500 hover:border-secondary/30 flex flex-col md:flex-row items-center gap-12 rounded-2xl"
           >
@@ -142,7 +142,7 @@ const Infrastructure = () => {
 
             {/* Background Gradient Trace */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/[0.02] to-secondary/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
+
             {/* Subtle Line Accent */}
             <div className="absolute top-0 left-0 w-[2px] h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top" />
           </article>

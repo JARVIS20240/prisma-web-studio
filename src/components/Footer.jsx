@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-black border-t border-white/10 mt-24">
+    <footer className="w-full bg-black border-t border-white/10">
       <div className="flex flex-col md:flex-row justify-between items-center py-16 px-6 max-w-7xl mx-auto text-[#DEDBC8]">
         <div className="font-serif italic text-xl font-bold mb-8 md:mb-0">
           Prisma

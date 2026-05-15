@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const TerminalLine = ({ command, output, delay }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, x: -10 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay, duration: 0.5 }}
@@ -32,14 +32,14 @@ const About = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-black min-h-screen pt-32 pb-12"
+      className="bg-black min-h-screen pt-36 pb-36"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Split-Pane Grid Architecture */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
+
           {/* Left Pane: The Terminal Interface */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -68,7 +68,7 @@ const About = () => {
               <svg className="w-full h-full" viewBox="0 0 400 400">
                 <defs>
                   <pattern id="wireframe-about" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DEDBC8" strokeWidth="0.5"/>
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DEDBC8" strokeWidth="0.5" />
                   </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#wireframe-about)" />
@@ -76,7 +76,7 @@ const About = () => {
               </svg>
             </div>
             <div className="space-y-8">
-              <motion.h1 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="font-serif text-6xl md:text-8xl italic text-primary leading-tight">Intelligence, <br/>localized.</motion.h1>
+              <motion.h1 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="font-serif text-6xl md:text-8xl italic text-primary leading-tight">Intelligence, <br />localized.</motion.h1>
               <motion.p initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="font-sans text-lg md:text-xl text-primary/80 leading-relaxed max-w-xl">Specializing in the deployment of large language models on consumer-grade hardware. By leveraging frameworks like LangChain and optimizing models such as Gemma 4 E2b, I build sovereign, zero-latency systems that keep data strictly on-premise.</motion.p>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="pt-8">
                 <Link to="/contact" className="inline-block px-10 py-4 bg-black border border-[#222222] text-primary font-mono text-sm tracking-[0.3em] uppercase transition-all duration-500 hover:border-secondary/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] rounded-full animate-[pulse_4s_infinite]">
@@ -94,7 +94,7 @@ const About = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {arsenal.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
                 className="p-8 border border-[#222222] rounded-2xl hover:border-secondary/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.05)] transition-all duration-500 group"
@@ -108,29 +108,29 @@ const About = () => {
 
         {/* Task 3: System Specs Footer Bar */}
         <div className="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-           <div className="overflow-hidden w-full relative">
-              <div className="flex whitespace-nowrap animate-marquee-slow py-2 font-mono text-[10px] text-primary/30 tracking-[0.2em] uppercase">
-                <span className="mx-12">SYSTEM_STATUS: OPTIMIZED</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">LATENCY: 24ms</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">ENVIRONMENT: LINUX_MINT</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">INFRASTRUCTURE: RTX_ACCELERATED</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">BUILD: V1.0.4</span>
-                {/* Repeat for seamless loop */}
-                <span className="mx-12">SYSTEM_STATUS: OPTIMIZED</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">LATENCY: 24ms</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">ENVIRONMENT: LINUX_MINT</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">INFRASTRUCTURE: RTX_ACCELERATED</span>
-                <span className="mx-12">//</span>
-                <span className="mx-12">BUILD: V1.0.4</span>
-              </div>
-           </div>
+          <div className="overflow-hidden w-full relative">
+            <div className="flex whitespace-nowrap animate-marquee-slow py-2 font-mono text-[10px] text-primary/30 tracking-[0.2em] uppercase">
+              <span className="mx-12">SYSTEM_STATUS: OPTIMIZED</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">LATENCY: 24ms</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">ENVIRONMENT: LINUX_MINT</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">INFRASTRUCTURE: RTX_ACCELERATED</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">BUILD: V1.0.4</span>
+              {/* Repeat for seamless loop */}
+              <span className="mx-12">SYSTEM_STATUS: OPTIMIZED</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">LATENCY: 24ms</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">ENVIRONMENT: LINUX_MINT</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">INFRASTRUCTURE: RTX_ACCELERATED</span>
+              <span className="mx-12">//</span>
+              <span className="mx-12">BUILD: V1.0.4</span>
+            </div>
+          </div>
         </div>
       </div>
     </motion.main>

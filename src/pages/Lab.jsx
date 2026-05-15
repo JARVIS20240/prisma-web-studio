@@ -6,11 +6,11 @@ const SummarizationPipeline = () => {
       {/* Left: Chaotic Ingest Cluster */}
       <div className="relative w-32 h-40 flex flex-col justify-center space-y-1.5 z-10">
         {[...Array(10)].map((_, i) => (
-          <div 
-            key={i} 
+          <div
+            key={i}
             className="h-[1px] bg-primary/40 rounded-full animate-bar-flicker"
-            style={{ 
-              width: `${30 + Math.random() * 70}%`, 
+            style={{
+              width: `${30 + Math.random() * 70}%`,
               animationDelay: `${i * 0.1}s`,
               marginLeft: `${Math.random() * 20}px`
             }}
@@ -22,34 +22,34 @@ const SummarizationPipeline = () => {
       <div className="relative flex items-center justify-center flex-1">
         {/* Converging/Diverging Lines */}
         <svg className="absolute w-full h-60 pointer-events-none opacity-20" viewBox="0 0 400 200">
-           <path d="M 40,60 L 200,100 M 40,80 L 200,100 M 40,100 L 200,100 M 40,120 L 200,100 M 40,140 L 200,100" fill="none" stroke="#A855F7" strokeWidth="0.5" strokeDasharray="2 4" />
-           <path d="M 360,70 L 200,100 M 360,100 L 200,100 M 360,130 L 200,100" fill="none" stroke="#A855F7" strokeWidth="0.5" strokeDasharray="3 3" />
+          <path d="M 40,60 L 200,100 M 40,80 L 200,100 M 40,100 L 200,100 M 40,120 L 200,100 M 40,140 L 200,100" fill="none" stroke="#A855F7" strokeWidth="0.5" strokeDasharray="2 4" />
+          <path d="M 360,70 L 200,100 M 360,100 L 200,100 M 360,130 L 200,100" fill="none" stroke="#A855F7" strokeWidth="0.5" strokeDasharray="3 3" />
         </svg>
 
         <div className="relative w-32 h-32 flex items-center justify-center animate-fractal">
-           <div className="absolute inset-0 bg-secondary/5 rounded-full blur-2xl" />
-           {/* Complex Fractal Pattern */}
-           <svg className="w-24 h-24" viewBox="0 0 100 100">
-             <rect x="25" y="25" width="50" height="50" fill="none" stroke="#A855F7" strokeWidth="0.5" transform="rotate(45 50 50)" />
-             <circle cx="50" cy="50" r="20" fill="none" stroke="#A855F7" strokeWidth="1" />
-             <rect x="35" y="35" width="30" height="30" fill="none" stroke="#A855F7" strokeWidth="0.5" transform="rotate(15 50 50)" />
-             <circle cx="50" cy="50" r="10" fill="none" stroke="#A855F7" strokeWidth="0.5" />
-             <path d="M 50,0 L 50,100 M 0,50 L 100,50" stroke="#A855F7" strokeWidth="0.2" className="opacity-30" />
-           </svg>
+          <div className="absolute inset-0 bg-secondary/5 rounded-full blur-2xl" />
+          {/* Complex Fractal Pattern */}
+          <svg className="w-24 h-24" viewBox="0 0 100 100">
+            <rect x="25" y="25" width="50" height="50" fill="none" stroke="#A855F7" strokeWidth="0.5" transform="rotate(45 50 50)" />
+            <circle cx="50" cy="50" r="20" fill="none" stroke="#A855F7" strokeWidth="1" />
+            <rect x="35" y="35" width="30" height="30" fill="none" stroke="#A855F7" strokeWidth="0.5" transform="rotate(15 50 50)" />
+            <circle cx="50" cy="50" r="10" fill="none" stroke="#A855F7" strokeWidth="0.5" />
+            <path d="M 50,0 L 50,100 M 0,50 L 100,50" stroke="#A855F7" strokeWidth="0.2" className="opacity-30" />
+          </svg>
         </div>
       </div>
 
       {/* Right: Structured Summary Output */}
       <div className="flex flex-col space-y-6 w-40 z-10">
         {[...Array(3)].map((_, i) => (
-          <div 
-            key={i} 
-            className="flex flex-col space-y-1.5 animate-bullet opacity-0" 
+          <div
+            key={i}
+            className="flex flex-col space-y-1.5 animate-bullet opacity-0"
             style={{ animationDelay: `${i * 1.5}s` }}
           >
             <div className="flex items-center space-x-2">
-               <div className="w-1.5 h-1.5 bg-primary/60 rounded-full" />
-               <div className="h-[1px] bg-primary/40 w-full" />
+              <div className="w-1.5 h-1.5 bg-primary/60 rounded-full" />
+              <div className="h-[1px] bg-primary/40 w-full" />
             </div>
             <div className="h-[1px] bg-primary/20 w-4/5 ml-3" />
           </div>
@@ -86,20 +86,20 @@ const NeuralHUD = () => {
 
       {/* Central Neural Core (Spherical Pattern) */}
       <div className="relative w-28 h-28 flex items-center justify-center">
-         <div className="absolute inset-0 bg-secondary/10 rounded-full animate-neural-bloom" />
-         <svg className="w-20 h-20 animate-pulse" viewBox="0 0 100 100">
-           {[...Array(6)].map((_, i) => (
-             <circle 
-                key={i} 
-                cx="50" cy="50" r={10 + i * 6} 
-                fill="none" stroke="#A855F7" strokeWidth="0.5" 
-                strokeDasharray={`${20 + i * 5} ${40 + i * 10}`} 
-                className="opacity-60"
-                style={{ transform: `rotate(${i * 60}deg)`, transformOrigin: 'center' }}
-             />
-           ))}
-           <circle cx="50" cy="50" r="5" fill="#A855F7" className="animate-pulse" />
-         </svg>
+        <div className="absolute inset-0 bg-secondary/10 rounded-full animate-neural-bloom" />
+        <svg className="w-20 h-20 animate-pulse" viewBox="0 0 100 100">
+          {[...Array(6)].map((_, i) => (
+            <circle
+              key={i}
+              cx="50" cy="50" r={10 + i * 6}
+              fill="none" stroke="#A855F7" strokeWidth="0.5"
+              strokeDasharray={`${20 + i * 5} ${40 + i * 10}`}
+              className="opacity-60"
+              style={{ transform: `rotate(${i * 60}deg)`, transformOrigin: 'center' }}
+            />
+          ))}
+          <circle cx="50" cy="50" r="5" fill="#A855F7" className="animate-pulse" />
+        </svg>
       </div>
 
       {/* Telemetry Corner Data */}
@@ -124,18 +124,18 @@ const SovereignShield = () => {
       <svg className="absolute inset-0 w-full h-full opacity-25" preserveAspectRatio="xMidYMid slice" viewBox="0 0 100 100">
         <defs>
           <pattern id="shield-grid-expanded" x="0" y="0" width="10" height="17.32" patternUnits="userSpaceOnUse">
-             <path d="M 5,0 L 10,2.88 L 10,8.66 L 5,11.54 L 0,8.66 L 0,2.88 Z" fill="none" stroke="#DEDBC8" strokeWidth="0.1" />
+            <path d="M 5,0 L 10,2.88 L 10,8.66 L 5,11.54 L 0,8.66 L 0,2.88 Z" fill="none" stroke="#DEDBC8" strokeWidth="0.1" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#shield-grid-expanded)" />
-        
+
         {/* Validation Shimmer Nodes - Spanning expanded grid */}
         {[...Array(40)].map((_, i) => (
-          <path 
+          <path
             key={i}
             d="M 5,0 L 10,2.88 L 10,8.66 L 5,11.54 L 0,8.66 L 0,2.88 Z"
             className="animate-node-shimmer"
-            style={{ 
+            style={{
               transform: `translate(${Math.random() * 120 - 10}px, ${Math.random() * 120 - 10}px)`,
               animationDelay: `${Math.random() * 5}s`,
               fill: 'none'
@@ -156,9 +156,9 @@ const SovereignShield = () => {
           {/* Enhanced Vault Boundary */}
           <div className="absolute inset-0 rounded-full border-[3px] border-secondary/80 animate-vault-pulse" />
           <div className="absolute inset-2 rounded-full border-[1px] border-secondary/20" />
-          
+
           <div className="w-20 h-20 bg-black border border-secondary/30 rounded-full flex items-center justify-center relative shadow-[0_0_30px_rgba(168,85,247,0.3)]">
-             <span className="material-symbols-outlined text-5xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>lock</span>
+            <span className="material-symbols-outlined text-5xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>lock</span>
           </div>
         </div>
       </div>
@@ -173,7 +173,7 @@ const Lab = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-      className="flex-grow pt-32 pb-24 px-6 max-w-7xl mx-auto w-full"
+      className="flex-grow pt-36 pb-36 px-6 lg:px-16 max-w-7xl mx-auto w-full"
     >
       {/* Page Title Section */}
       <header className="mb-16 md:mb-24 md:w-2/3">
@@ -218,14 +218,14 @@ const Lab = () => {
 
             {/* Summarization Pipeline Re-Engineering */}
             <div className="relative z-10 w-full h-full bg-black flex flex-col items-center justify-center py-12">
-               <div className="flex-grow w-full flex items-center justify-center">
-                 <SummarizationPipeline />
-               </div>
-               <div className="mt-8 flex justify-center w-full z-20">
-                 <div className="px-5 py-2 bg-black border border-secondary/20 rounded-full text-[10px] font-mono text-secondary tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(168,85,247,0.1)]">
-                   LIVE_AUDIO_SIGNAL_INGEST
-                 </div>
-               </div>
+              <div className="flex-grow w-full flex items-center justify-center">
+                <SummarizationPipeline />
+              </div>
+              <div className="mt-8 flex justify-center w-full z-20">
+                <div className="px-5 py-2 bg-black border border-secondary/20 rounded-full text-[10px] font-mono text-secondary tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(168,85,247,0.1)]">
+                  LIVE_AUDIO_SIGNAL_INGEST
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -286,9 +286,9 @@ const Lab = () => {
 
             {/* Status Label Positioning */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20">
-               <div className="px-5 py-2 bg-black/80 backdrop-blur-md border border-secondary/30 rounded-full text-[10px] font-mono text-secondary tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(168,85,247,0.15)] whitespace-nowrap">
-                 LIVE_DATA_INTEGRITY_SCAN
-               </div>
+              <div className="px-5 py-2 bg-black/80 backdrop-blur-md border border-secondary/30 rounded-full text-[10px] font-mono text-secondary tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(168,85,247,0.15)] whitespace-nowrap">
+                LIVE_DATA_INTEGRITY_SCAN
+              </div>
             </div>
 
             {/* Constant Subtle Glow Overlay */}

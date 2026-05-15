@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const countryData = {
@@ -15,11 +15,29 @@ const Contact = () => {
   const [country, setCountry] = useState("+91");
   const [phone, setPhone] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(true);
-  
+
   // Task 6: Custom Dropdown State
   const [isScopeOpen, setIsScopeOpen] = useState(false);
   const [selectedScope, setSelectedScope] = useState('SELECT WEB_SERVICE_TYPE');
   const [isCountryOpen, setIsCountryOpen] = useState(false);
+
+  // Task 14.1: Refs for Click Outside Detection
+  const countryRef = useRef(null);
+  const scopeRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (countryRef.current && !countryRef.current.contains(event.target)) {
+        setIsCountryOpen(false);
+      }
+      if (scopeRef.current && !scopeRef.current.contains(event.target)) {
+        setIsScopeOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const formatPhone = (input, mask) => {
     const numbers = input.replace(/\D/g, "");
@@ -51,7 +69,6 @@ const Contact = () => {
     setIsPhoneValid(true);
   }, [country]);
 
-  // Task 5: UX Refactor - Submission Logic
   const handleSubmit = (e) => {
     e.preventDefault();
     const rawLength = phone.replace(/\D/g, "").length;
@@ -60,13 +77,8 @@ const Contact = () => {
       return;
     }
 
-    // Instantly trigger mailto
     window.location.href = 'mailto:your.email@example.com?subject=[PRISMA_DIGITAL_HANDSHAKE]';
-    
-    // UI state update
     setStatus('processing');
-    
-    // Reset after delay
     setTimeout(() => {
       setStatus('idle');
     }, 3000);
@@ -78,16 +90,14 @@ const Contact = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-      className="bg-black min-h-screen pt-32 pb-24"
+      className="relative bg-black min-h-screen pt-36 pb-36"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          
-          {/* Left Pane */}
           <div className="space-y-12">
             <header className="space-y-6">
               <h1 className="font-serif text-5xl md:text-7xl italic text-primary leading-tight">
-                Establish <br/>Connection.
+                Establish <br />Connection.
               </h1>
               <p className="font-sans text-xl text-primary/70 leading-relaxed max-w-lg">
                 For custom web architecture, secure data pipelines, or enterprise engineering consulting, initiate a secure handshake below.
@@ -120,13 +130,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Pane */}
           <div className="relative">
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-2">
                 <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ NAME / ORGANIZATION ]</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   aria-label="Name or Organization"
                   placeholder="IDENTIFY_YOURSELF"
@@ -136,8 +145,8 @@ const Contact = () => {
 
               <div className="space-y-2">
                 <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ EMAIL ADDRESS ]</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
                   aria-label="Secure Email Address"
                   placeholder="SECURE_RETURN_NODE"
@@ -147,10 +156,10 @@ const Contact = () => {
 
               <div className="space-y-3">
                 <div className="flex flex-col sm:flex-row gap-6">
-                  <div className="sm:w-1/3 space-y-2">
+                  <div className="sm:w-1/3 space-y-2" ref={countryRef}>
                     <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ CODE ]</label>
                     <div className="relative">
-                      <div 
+                      <div
                         onClick={() => setIsCountryOpen(!isCountryOpen)}
                         className="bg-[#080808] border border-[#222222] text-[#DEDBC8] p-5 w-full rounded-lg cursor-pointer flex justify-between items-center focus-within:border-secondary"
                         tabIndex={0}
@@ -158,21 +167,22 @@ const Contact = () => {
                         aria-label="Select Country Code"
                       >
                         <span>{countryData[country].name} ({country})</span>
-                        <svg className={`transition-transform duration-300 ${isCountryOpen ? 'rotate-180' : ''}`} width="10" height="6" viewBox="0 0 10 6" fill="none">
-                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        <svg className={`transition-transform duration-300 ${isCountryOpen ? 'rotate-180' : ''}`} width="10" height="6" viewBox="0 0 100 6" fill="none">
+                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                         </svg>
                       </div>
-                      
+
                       <AnimatePresence>
                         {isCountryOpen && (
-                          <motion.ul 
+                          <motion.ul
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            className="absolute z-50 w-full mt-2 bg-[#050505] border border-[#222222] rounded-lg overflow-hidden shadow-2xl"
+                            data-lenis-prevent
+                            className="absolute z-50 w-full mt-2 bg-[#050505] border border-[#222222] rounded-lg shadow-2xl max-h-48 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-secondary/20"
                           >
                             {Object.keys(countryData).map(code => (
-                              <li 
+                              <li
                                 key={code}
                                 onClick={() => { setCountry(code); setIsCountryOpen(false); }}
                                 className="p-4 hover:bg-secondary/10 hover:text-secondary cursor-pointer transition-colors border-b border-white/5 last:border-0 font-mono text-xs"
@@ -187,8 +197,8 @@ const Contact = () => {
                   </div>
                   <div className="flex-1 space-y-2">
                     <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ PHONE_NUMBER ]</label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       value={phone}
                       onChange={handlePhoneChange}
                       aria-label="Phone Number"
@@ -209,11 +219,10 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Task 6: Custom Project Scope Dropdown */}
-              <div className="space-y-2">
+              <div className="space-y-2" ref={scopeRef}>
                 <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ PROJECT SCOPE ]</label>
                 <div className="relative">
-                  <div 
+                  <div
                     onClick={() => setIsScopeOpen(!isScopeOpen)}
                     className="bg-[#080808] border border-[#222222] text-[#DEDBC8] p-5 w-full rounded-lg cursor-pointer flex justify-between items-center focus-within:border-secondary"
                     tabIndex={0}
@@ -224,17 +233,18 @@ const Contact = () => {
                       {selectedScope}
                     </span>
                     <svg className={`transition-transform duration-300 ${isScopeOpen ? 'rotate-180' : ''}`} width="12" height="8" viewBox="0 0 12 8" fill="none">
-                      <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     </svg>
                   </div>
-                  
+
                   <AnimatePresence>
                     {isScopeOpen && (
-                      <motion.ul 
+                      <motion.ul
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute z-50 w-full mt-2 bg-[#050505] border border-[#222222] rounded-lg overflow-hidden shadow-2xl"
+                        data-lenis-prevent
+                        className="absolute z-50 w-full mt-2 bg-[#050505] border border-[#222222] rounded-lg shadow-2xl max-h-60 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-secondary/20"
                       >
                         {[
                           "B2B Corporate Platform",
@@ -244,7 +254,7 @@ const Contact = () => {
                           "Custom AI / LLM Integration",
                           "Other (System Inquiry)"
                         ].map((option) => (
-                          <li 
+                          <li
                             key={option}
                             onClick={() => { setSelectedScope(option); setIsScopeOpen(false); }}
                             className="p-5 hover:bg-secondary/10 hover:text-secondary cursor-pointer transition-colors border-b border-white/5 last:border-0 text-sm"
@@ -261,8 +271,8 @@ const Contact = () => {
 
               <div className="space-y-2">
                 <label className="font-mono text-[10px] text-primary/40 uppercase tracking-widest pl-2">[ PROJECT DETAILS ]</label>
-                <textarea 
-                  rows="5" 
+                <textarea
+                  rows="5"
                   required
                   aria-label="Project Details"
                   placeholder="TRANSMIT_DATA_PAYLOAD..."
@@ -271,13 +281,13 @@ const Contact = () => {
               </div>
 
               <div className="mt-8">
-                <button 
+                <button
                   type="submit"
                   disabled={status === 'processing' || !isPhoneValid || phone.length === 0 || selectedScope === 'SELECT WEB_SERVICE_TYPE'}
                   className={`w-full py-6 border border-[#222222] font-mono text-sm tracking-[0.4em] uppercase transition-all duration-500 rounded-lg active:scale-[0.98] 
-                    ${(status === 'processing' || !isPhoneValid || phone.length === 0 || selectedScope === 'SELECT WEB_SERVICE_TYPE') 
-                      ? 'bg-secondary/5 text-primary/20 cursor-not-allowed border-white/5' 
-                      : 'bg-black text-primary hover:bg-primary hover:text-black shadow-[0_0_30px_rgba(168,85,247,0.1)]'}`}
+                    ${(status === 'processing' || !isPhoneValid || phone.length === 0 || selectedScope === 'SELECT WEB_SERVICE_TYPE')
+                      ? 'bg-secondary/5 text-primary/20 cursor-not-allowed border-white/5'
+                      : 'bg-black text-primary hover:bg-primary hover:text-black shadow-[0_0_30px_rgba(168,85,247,0.1)'}`}
                 >
                   {status === 'processing' ? '[ PROTOCOL_INITIATED... ]' : '[ TRANSMIT_PAYLOAD ]'}
                 </button>
@@ -291,7 +301,6 @@ const Contact = () => {
               </svg>
             </div>
           </div>
-
         </div>
       </div>
     </motion.main>

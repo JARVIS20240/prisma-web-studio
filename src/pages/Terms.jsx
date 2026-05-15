@@ -8,13 +8,13 @@ const Terms = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-black min-h-screen text-primary"
+      className="bg-black min-h-screen text-primary pt-36 pb-36"
     >
-      <div className="max-w-4xl mx-auto px-6 py-24 md:py-32">
+      <div className="max-w-4xl mx-auto px-6">
         {/* Task 1: Back Navigation */}
         <div className="mb-16">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="font-mono text-xs tracking-[0.3em] text-primary/40 hover:text-secondary transition-colors uppercase"
           >
             [ RETURN_TO_SYSTEM ]
@@ -25,7 +25,7 @@ const Terms = () => {
         <header className="mb-12">
           <span className="font-mono text-[10px] text-secondary tracking-[0.4em] uppercase">// OPERATING_DIRECTIVES_V1.0</span>
           <h1 className="font-serif text-5xl md:text-7xl italic text-primary mt-4 mb-8">Terms of Service.</h1>
-          
+
           <div className="border border-[#222222] p-6 rounded-lg bg-[#050505] shadow-2xl">
             <p className="font-mono text-[11px] text-primary/60 leading-relaxed uppercase tracking-wider">
               "By initiating a handshake through our contact portal, you agree to the following system-wide directives."
@@ -35,7 +35,7 @@ const Terms = () => {
 
         {/* Task 3: Content Injection */}
         <div className="space-y-12 font-sans text-lg text-primary/80 leading-relaxed">
-          
+
           <section>
             <h2 className="font-serif text-2xl text-primary mb-6">1. Scope of Architecture</h2>
             <p>
